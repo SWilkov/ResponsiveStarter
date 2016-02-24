@@ -15,7 +15,8 @@
         <title>Responsive Starter Web</title>
     </head>
     <body ng-app="responsive-starter">
-         <header role="banner" class="header" shrink-nav shrink-height="50">           
+       <!--header appears on desktop screen sizes (769px and above) -->
+       <header role="banner" class="header" shrink-nav shrink-height="50">           
             <div class="wrapper">                
                 <a href="/#/home" class="home-nav">
                     <span class="branding-logo">
@@ -35,14 +36,18 @@
             </div>
         </header>
         
+        <!-- hamburger appears on screens below 768px (tablet) -->
         <div class="hamburger-holder" ng-controller="navigationController as vm">
             <button class="c-hamburger c-hamburger--htx"
                     ng-click="vm.hamburgerMenuClicked()"
                     ng-class="{ 'is-active': hamburgerMenuActive === true }">
                 <span>toggle menu</span>
             </button>
-        </div>              
-         
+        </div> 
+        
+                     
+        <!-- mobile-nav Activated when user clicks hamburger menu
+             --> 
          <div class="mobile-nav" ng-controller="navigationController as vm"                
                 ng-class="{ 'mobile-nav-active': hamburgerMenuActive === true }">
             <ul class="mobile-nav-list">
@@ -50,16 +55,21 @@
                     <a href="/#/home" ng-click="vm.closeMobileMenu()">home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/#/contact">contact</a>
+                    <a href="/#/about" ng-click="vm.closeMobileMenu()">about</a>
+                </li>   
+                <li class="nav-item">
+                    <a href="/#/contact" ng-click="vm.closeMobileMenu()">contact</a>
                 </li>     
             </ul>
-        </div>             
+        </div>  
+                   
         <div class="main-content">
             <div class="container-fluid">                
                 <ui-view></ui-view>
             </div>
-        </div>
+       </div>
         
+       
        <footer class="footer">
            <div class="footer-section footer--home-width">
                <a href="/#/home" class="home-nav">
@@ -72,6 +82,9 @@
                         <li class="nav-item">
                             <a href="/#/home" ng-click="closeMobileMenu()">home</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="/#/about">about</a>
+                        </li>   
                         <li class="nav-item">
                             <a href="/#/contact">contact</a>
                         </li>     
@@ -110,6 +123,7 @@
         <!--inject:js-->
         <script src="/src/client/scripts/app.js"></script>
         <script src="/src/client/scripts/controllers/IContentController.js"></script>
+        <script src="/src/client/scripts/controllers/aboutController.js"></script>
         <script src="/src/client/scripts/controllers/bottomContentController.js"></script>
         <script src="/src/client/scripts/controllers/contactController.js"></script>
         <script src="/src/client/scripts/controllers/navigationController.js"></script>

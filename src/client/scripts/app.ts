@@ -1,3 +1,5 @@
+/** main entry point for the app */
+
 module app{
     var main = angular.module("responsive-starter", 
                     ["ui.router", "common.directives"]);
@@ -33,6 +35,15 @@ module app{
                             templateUrl: "/src/client/views/contact.html",
                             controller: "contactController as vm"
                          }
+                }
+            })
+            .state("about", {
+                url: "/about",
+                views:{
+                    "" : {
+                        templateUrl: "/src/client/views/about.html",
+                        controller: "aboutController as vm"
+                    }
                 }
             }); 
                            
