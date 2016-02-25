@@ -1,3 +1,9 @@
+/** NavigationController.ts 
+ * Need to load up mobile-nav (and close it) when hamburger menu is clicked
+ * This controller takes care of that with variable hamburgerMenuActive on the 
+ * $rootScope.
+ */
+
 module app.common {
     interface INavigationController {
         hamburgerMenuClicked(): void;

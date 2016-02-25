@@ -8,6 +8,7 @@ module app.common{
     
     interface IContactController{
         title:string;
+        description:string;
         
         sendMessage(contact:IContact):void;
     }
@@ -15,10 +16,11 @@ module app.common{
     class ContactController implements IContactController{
         static $inject = [];
         
-        constructor(public title:string){
+        constructor(public title:string, public description:string){
             var self = this;
             
             self.title = "Contact Page";
+            self.description = "Contact me...";
         }
         
         sendMessage(contact:IContact) : void {

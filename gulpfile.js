@@ -6,6 +6,8 @@ var tasklisting = require("gulp-task-listing");
 var autoprefixer = require("gulp-autoprefixer");
 var inject = require("gulp-inject");
 var nodemon = require("gulp-nodemon");
+var ts = require("gulp-typescript");
+var series = require("stream-series");
 
 var del = require("del");
 var bs = require("browser-sync");
@@ -50,10 +52,13 @@ gulp.task("wiredep", function(){
    var options = config.getWiredepDefaultOptions();
    var wiredep = require("wiredep").stream;
    
+   var mainapp = gulp.src(config.js.appjs);
+   var otherjs = gulp.src([config.js.scripts, config.js.exclude]);
+   
    return gulp.src(config.index)
               .pipe(wiredep(options))
               .pipe(debug())
-              .pipe(inject(gulp.src(config.js)))
+              .pipe(inject(series(mainapp, otherjs)))
               .pipe(debug())
               .pipe(gulp.dest(config.clientPath));
 });
@@ -67,6 +72,31 @@ gulp.task("inject", ["wiredep"], function () {
               .pipe(debug())
               .pipe(gulp.dest(config.clientPath));             
 });
+
+/** delete js files  */
+gulp.task("clean-ts", function(callback){
+    log("Starting delete js files");
+    var jsFiles = config.typescript.javascriptOutput + "*.js";
+    clean(jsFiles);
+});
+
+/** compile typescript to javascript */
+gulp.task("compile-ts", function(){
+    log("Starting to compile typescript files to javascript");
+   var sourceTsFiles = config.typescript.filePaths; 
+      
+   var tsProject = ts.createProject({
+       declaration: true,
+       noExternalResolve: true
+   });
+      
+   var tsResult = gulp.src(sourceTsFiles)
+                      .pipe(ts(tsProject));
+       
+     return tsResult.js
+             .pipe(gulp.dest(config.typescript.javascriptOutput));    
+});
+
 
 /** Start the dev server (./src) */
 gulp.task("start-dev", ["inject"], function() {

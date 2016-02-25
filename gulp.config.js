@@ -2,6 +2,7 @@
 
 module.exports = function(){
   var clientPath = "./src/client/";
+  var scriptsPath = clientPath + "scripts/";
   var buildPath = "./build/";
   var sassPath = clientPath + "scss/";
   var tempPath = "./tmp/";
@@ -30,17 +31,27 @@ module.exports = function(){
           defaultBrowser: "google chrome"
       },
       
-      js: [
-          clientPath + "scripts/app.js",
-          clientPath + "scripts/controllers/*.js",
-          clientPath + "scripts/directives/*.js"
-      ],
+     js: {
+          appjs: scriptsPath + "js/app.js",
+          scripts: scriptsPath + "js/*.js",
+          exclude: "!./src/client/scripts/js/app.js"
+      },
       
       //bower settings for injection (wiredep)
       bower: {
           json: require("./bower.json"),
           directory: clientPath + "libs/",
           ignorePath: "../.."
+      },
+      
+      //Typescripts settings for use when converting to javascript
+      typescript: {          
+          filePaths: [
+              scriptsPath + "app.ts",           
+              scriptsPath + "controllers/*.ts",
+              scriptsPath + "directives/*.ts" 
+          ],             
+          javascriptOutput: scriptsPath + "js/"          
       }
   };
   

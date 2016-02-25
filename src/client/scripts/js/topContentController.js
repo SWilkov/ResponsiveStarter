@@ -8,7 +8,7 @@ var app;
                 this.positives = positives;
             }
             return TechItem;
-        })();
+        }());
         var TopContentController = (function () {
             function TopContentController(title, description) {
                 this.title = title;
@@ -27,7 +27,7 @@ var app;
             }
             TopContentController.$inject = [];
             return TopContentController;
-        })();
+        }());
         angular.module("responsive-starter")
             .controller("topContentController", TopContentController);
     })(common = app.common || (app.common = {}));

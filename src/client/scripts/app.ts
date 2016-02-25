@@ -1,4 +1,7 @@
-/** main entry point for the app */
+/** app.ts 
+ *  main entry point for the app 
+ *  takes care of setting up $StateProvider for SPA navigation
+ * */
 
 module app{
     var main = angular.module("responsive-starter", 

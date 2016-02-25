@@ -13,7 +13,7 @@ var app;
             }
             AboutController.$inject = [];
             return AboutController;
-        })();
+        }());
         angular.module("responsive-starter")
             .controller("aboutController", AboutController);
     })(common = app.common || (app.common = {}));

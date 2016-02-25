@@ -12,7 +12,7 @@ var app;
             }
             BottomContentController.$inject = [];
             return BottomContentController;
-        })();
+        }());
         angular.module("responsive-starter")
             .controller("bottomContentController", BottomContentController);
     })(common = app.common || (app.common = {}));
