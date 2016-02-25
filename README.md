@@ -21,7 +21,7 @@ I'm still fairly new to web development workflows and wanted a starter template 
 * angular-ui-router
 * responsive hamburger menu for smaller screens
 
-### ShrinkNav.ts
+#### ShrinkNav.ts
 An angularjs directive that shrinks the top navigation bar from 50px to 35px when scrolling goes beyond a certain height (50px)
 If your navigation bar is a different height say 100px simply change the shrinkHeight 
 eg <header role="banner" class="header" **shrink-nav shrink-height="50"**>
